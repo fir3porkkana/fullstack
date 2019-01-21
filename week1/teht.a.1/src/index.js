@@ -4,19 +4,30 @@ import ReactDOM from 'react-dom';
 
 const App = () => {
 
-    const course = "Half Stack -sovelluskehitys"
-    const part1 = "Reactin perusteet"
-    const excercises1 = 10
-    const part2 = "Tiedonvälitys propseilla"
-    const excercises2 = 7
-    const part3 = "Komponenttien tila"
-    const excercises3 = 14
+    const course = {
+        name: "Half Stack -sovelluskehitys",
+        parts: [
+        {
+        name: 'Reactin perusteet',
+        exercises: 10
+        },
+        {
+        name: "Tiedonvälitys propseilla",
+        exercises: 7
+        },
+        {
+        name: "Komponenttien tila",
+        exercises: 14
+        }
+    ]
+}
+    
     
     return (
         <>
-        <Header course={course}/>
-        <Content part1={part1} excercises1={excercises1} part2={part2} excercises2={excercises2} part3={part3} excercises3={excercises3}/>
-        <Total excercises1={excercises1} excercises2={excercises2} excercises3={excercises3} />
+        <Header course={course.name}/>
+        <Content parts={course.parts}/>
+        <Total parts={course.parts} />
         </>
     )
 
@@ -30,20 +41,21 @@ const Header = ({course}) => {
     )
 }
 
-const Content =({part1, excercises1, part2, excercises2, part3, excercises3}) => {
+const Content =({parts}) => {
     return (
         <> 
-         <Part part={part1} excercises={excercises1}/>
-         <Part part={part2} excercises={excercises2}/>
-         <Part part={part3} excercises={excercises3}/>
+         <Part part={parts[0].name} exercises={parts[0].exercises}/>
+         <Part part={parts[1].name} exercises={parts[1].exercises}/>
+         <Part part={parts[2].name} exercises={parts[2].exercises}/>
         </>
     )
 }
 
-const Total = ({excercises1, excercises2, excercises3}) => {
+const Total = ({parts}) => {
+    console.log(parts, parts[0].exercises)
     return (
         <>
-          <p>yhteensä {excercises1 + excercises2 + excercises3} tehtävää </p>
+          <p>yhteensä {parts[0].exercises + parts[1].exercises + parts[2].exercises} tehtävää </p>
         </>
     )
 }
@@ -52,7 +64,7 @@ const Part = (props) => {
     return (
         <>
             <p>
-                {props.part} {props.excercises}
+                {props.part} {props.exercises}
             </p>
         </>
     )
@@ -60,4 +72,3 @@ const Part = (props) => {
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
