@@ -58,7 +58,8 @@ const Keskiarvo = (props) => {
         <table>
             <tbody>
                 <tr>
-                <td>keskiarvo</td><td>{(props.good - props.bad)/yht}</td>
+                <td>keskiarvo</td>
+                <td>{(props.good - props.bad)/yht}</td>
                 </tr>
             </tbody>
             
