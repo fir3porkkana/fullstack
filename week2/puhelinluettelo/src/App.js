@@ -12,7 +12,7 @@ const App = () => {
 
   useEffect(() => {
     console.log("effect")
-    axios.get("http://localhost:3001/persons").then(response => {
+    axios.get("/api/persons").then(response => {
       console.log("promise fulfilled")
       setPersons(response.data)
     })
@@ -30,16 +30,22 @@ const App = () => {
     console.log(persons.includes(personObject))
 
     if (!persons.map(person => person.name).includes(newName)) {
-      serverService.post(personObject).then(() =>
-        serverService.get().then(result => {
-          console.log("result", result)
-          setPersons(result)
-          setErrorMessage(`henkilö '${newName}' lisätty`)
-          setTimeout(() => {
-            setErrorMessage(null)
-          }, 5000)
+      serverService
+        .post(personObject)
+        .then(res =>
+          serverService.get().then(result => {
+            console.log("result", result)
+            setPersons(result)
+            setErrorMessage(`henkilö '${newName}' lisätty`)
+            setTimeout(() => {
+              setErrorMessage(null)
+            }, 5000)
+          })
+        )
+        .catch(error => {
+          console.log("vilduils")
+          setErrorMessage(error.response.data)
         })
-      )
     } else {
       const queryResult = window.confirm(
         `${newName} on jo luettelossa. Korvataanko vanha numero uudella?`

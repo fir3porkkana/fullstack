@@ -1,0 +1,11 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlcHBvIiwiaWQiOiI1YzZiMjBjZjEyOGQwNTAyZTE5NDFhMzUiLCJpYXQiOjE1NTA1MjU1MTh9.Stv0DK8v7aeyd314XeSuVkZXXTQ66g7hgM21lYANhj0
+
+
+{
+    "title": "kuollut meme",
+    "author": "järkevä jäbä",
+    "url": "http://sieni.es",
+    "likes": 200
+}
