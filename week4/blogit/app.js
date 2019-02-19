@@ -6,7 +6,6 @@ const blogsRouter = require("./controllers/blogs")
 const mongoose = require("mongoose")
 const usersRouter = require("./controllers/users")
 const loginRouter = require("./controllers/login")
-const middleware = require("./middleware")
 
 console.log("connecting to ", config.MONGODB_URI)
 
