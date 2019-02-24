@@ -34,4 +34,12 @@ const update = async (id, newObject) => {
   }
 }
 
-export default { getAll, create, update, setToken }
+const remove = async id => {
+  try {
+    await axios.delete(`${baseUrl}/${id}`)
+  } catch (exception) {
+    console.log(exception)
+  }
+}
+
+export default { getAll, create, update, remove, setToken }
