@@ -40,7 +40,9 @@ const App = () => {
         </Togglable>
       ) : (
         <div>
-          <BlogForm setBlogs={setBlogs} setMessage={setMessage} />
+          <Togglable buttonLabel={"add blog"}>
+            <BlogForm setBlogs={setBlogs} setMessage={setMessage} />
+          </Togglable>
           {blogs
             .sort((a, b) => a.likes - b.likes)
             .map(blog => (

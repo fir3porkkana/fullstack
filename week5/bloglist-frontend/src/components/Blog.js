@@ -14,7 +14,7 @@ const Blog = ({ blog }) => {
   return (
     <div style={blogStyle}>
       <div onClick={() => setShowing(!showing)}>
-        "{blog.title}" by {blog.author}
+        {blog.title} by {blog.author}
         {showing === true && (
           <div>
             <ul>

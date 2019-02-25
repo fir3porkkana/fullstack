@@ -1,22 +1,27 @@
 import React, { useState } from "react"
 import blogService from "../services/blogs"
+import { useField } from "../hooks/index"
 
 const BlogForm = ({ setBlogs, setMessage }) => {
-  const [title, setTitle] = useState("")
-  const [author, setAuthor] = useState("")
-  const [url, setUrl] = useState("")
+  const titleHook = useField("text")
+  const authorHook = useField("text")
+  const urlHook = useField("text")
 
   const handlePosting = async event => {
     try {
       event.preventDefault()
-      await blogService.create({ title, author, url })
+      await blogService.create({
+        title: titleHook.value,
+        author: authorHook.value,
+        url: urlHook.value
+      })
       const blogs = await blogService.getAll()
       console.log(blogs)
-      setTitle("")
-      setAuthor("")
-      setUrl("")
+      titleHook.reset()
+      authorHook.reset()
+      urlHook.reset()
       setBlogs(blogs)
-      setMessage(`blog ${title} by ${author} added`)
+      setMessage(`blog ${titleHook.value} by ${authorHook.value} added`)
       setTimeout(() => {
         setMessage(null)
       }, 3500)
@@ -35,25 +40,13 @@ const BlogForm = ({ setBlogs, setMessage }) => {
       <form onSubmit={handlePosting}>
         <div>
           <div>
-            title:{" "}
-            <input
-              value={title}
-              onChange={({ target }) => setTitle(target.value)}
-            />
+            title: <input {...titleHook} />
           </div>
           <div>
-            author:{" "}
-            <input
-              value={author}
-              onChange={({ target }) => setAuthor(target.value)}
-            />
+            author: <input {...authorHook} />
           </div>
           <div>
-            url:{" "}
-            <input
-              value={url}
-              onChange={({ target }) => setUrl(target.value)}
-            />
+            url: <input {...urlHook} />
           </div>
         </div>
         <button type="submit">create</button>

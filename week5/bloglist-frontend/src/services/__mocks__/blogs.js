@@ -19,6 +19,7 @@ const blogs = [
 ]
 
 let token = null
+console.log("token:", token)
 
 const setToken = newToken => {
   token = `bearer ${newToken}`

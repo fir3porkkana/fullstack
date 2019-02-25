@@ -17,19 +17,19 @@ describe("<Blog/>", () => {
 
   it("at first only the title and auhtor are displayed", () => {
     expect(component.container).toHaveTextContent(
-      `"näin sitä pyörää ajetaan" by tietäjä-tiera`
+      "näin sitä pyörää ajetaan by tietäjä-tiera"
     )
     expect(component.container).not.toHaveTextContent("3000 likes")
   })
 
   it("after clicking the element additional info is rendered", () => {
     const clickableBlog = component.getByText(
-      `"näin sitä pyörää ajetaan" by tietäjä-tiera`
+      "näin sitä pyörää ajetaan by tietäjä-tiera"
     )
     fireEvent.click(clickableBlog)
 
     expect(component.container).toHaveTextContent(
-      `"näin sitä pyörää ajetaan" by tietäjä-tiera`
+      "näin sitä pyörää ajetaan by tietäjä-tiera"
     )
     expect(component.container).toHaveTextContent("3000 likes")
   })
