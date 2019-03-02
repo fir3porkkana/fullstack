@@ -1,18 +1,17 @@
 import React from "react"
 import { connect } from "react-redux"
 import { newAnecdote } from "../reducers/anecdoteReducer"
-import { clearMessage } from "../reducers/notificationReducer"
+import { setMessage } from "../reducers/notificationReducer"
 
 const AnecdoteForm = props => {
   const create = event => {
     event.preventDefault()
     const doteContent = event.target.dote.value
-    console.log("doteContent:", doteContent)
-    props.newAnecdote(doteContent)
-    setTimeout(() => {
-      props.clearMessage()
-    }, 3000)
     event.target.dote.value = ""
+    console.log("doteContent:", doteContent)
+    console.log("PROPS.NEWANECDOTE HERE", props.newAnecdote)
+    props.newAnecdote(doteContent)
+    props.setMessage(`"${doteContent}" added`, 3.5)
   }
 
   return (
@@ -30,7 +29,7 @@ const AnecdoteForm = props => {
 
 const mapDispatchTopProps = {
   newAnecdote,
-  clearMessage
+  setMessage
 }
 
 const ConnectedAnecdoteForm = connect(

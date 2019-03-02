@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import { voteAnecdote } from "../reducers/anecdoteReducer"
-import { clearMessage } from "../reducers/notificationReducer"
+import { setMessage } from "../reducers/notificationReducer"
 
 const AnecdoteList = props => {
   const anecdotes = props.visibleAnecdotes
@@ -13,9 +13,7 @@ const AnecdoteList = props => {
     console.log("äänestetään anekdoottia: ", anecdote)
     props.voteAnecdote(anecdote)
     console.log("anekdootti äänestyksen jälkeen: ", anecdote)
-    setTimeout(() => {
-      props.clearMessage()
-    }, 3000)
+    props.setMessage(`you voted for "${anecdote.content}"`, 3.5)
   }
   console.log("STATEN FILTER TÄÄLLÄ:", props.filter)
   return (
@@ -40,10 +38,11 @@ const dotesToShow = ({ anecdotes, filter }) => {
 
 const mapDispatchToProps = {
   voteAnecdote,
-  clearMessage
+  setMessage
 }
 
 const mapStateToProps = state => {
+  console.log("state:", state)
   return {
     visibleAnecdotes: dotesToShow(state)
   }
