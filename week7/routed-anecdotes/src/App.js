@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect,
   withRouter
 } from "react-router-dom"
 
@@ -183,11 +182,6 @@ const App = () => {
   return (
     <div>
       <h1>Software anecdotes</h1>
-      {/* <Menu />
-      <AnecdoteList anecdotes={anecdotes} />
-      <About />
-      <CreateNew addNew={addNew} />
-      <Footer /> */}
       <Router>
         <div>
           <Route
