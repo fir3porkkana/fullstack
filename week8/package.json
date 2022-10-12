@@ -9,7 +9,7 @@
   "author": "Tiera",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^2.6.7",
+    "apollo-server": "^2.25.4",
     "graphql": "^14.4.0",
     "mongoose": "^5.7.0",
     "mongoose-unique-validator": "^2.0.3"
